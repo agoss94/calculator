@@ -75,4 +75,13 @@ button {
     height: 10vh;
 }
 
+.display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+}
+
 
