@@ -1,9 +1,9 @@
-const PLUS ='+';
 
 let display = document.querySelector('.display');
 let firstInput = null;
 let secondInput = null;
 let operation = null;
+let operationString;
 
 
 let clearButton = document.querySelector('.clear');
@@ -55,7 +55,7 @@ eight.addEventListener('click', () => process(8));
 nine.addEventListener('click', () => process(9));
 
 /**
- * Set opertions
+ * Clear Operation
  */
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
@@ -65,12 +65,62 @@ clear.addEventListener('click', () => {
     operation = null;
 })
 
+/**
+ * Delete Operation
+ */
+ const deleteBtn = document.querySelector('.delete');
+ deleteBtn.addEventListener('click', () => {
+     if(secondInput != null) {
+         secondInput = null;
+         display.innerHTML = firstInput + ' ' + operationString;
+     } else if(operation != null){
+        operation = null;
+        display.innerHTML = firstInput + ' ';
+     } else {
+         firstInput = null;
+         display.innerHTML = '';
+     }
+ })
 
+/**
+ * Plus button
+ */
 const plus = document.querySelector('.plus');
 plus.addEventListener('click', () => {
     operation = (a, b) => a + b;
     display.innerHTML += '+' + ' '
+    operationString = '+';
 });
+
+/**
+ * Minus button
+ */
+ const minus = document.querySelector('.minus');
+ minus.addEventListener('click', () => {
+     operation = (a, b) => a - b;
+     display.innerHTML += '-' + ' '
+     operationString = '-';
+ });
+
+ /**
+ * Times button
+ */
+  const mult = document.querySelector('.mult');
+  mult.addEventListener('click', () => {
+      operation = (a, b) => a * b;
+      display.innerHTML += 'x' + ' '
+      operationString = 'x';
+  });
+
+  /**
+ * Division button
+ */
+   const division = document.querySelector('.division');
+   division.addEventListener('click', () => {
+       operation = (a, b) => a / b;
+       display.innerHTML += '÷' + ' '
+       operationString = '÷';
+   });
 
 
 /**
@@ -82,6 +132,7 @@ plus.addEventListener('click', () => {
         display.innerHTML = operation(firstInput, secondInput);
         firstInput = null;
         secondInput = null;
+        operation = null;
      }
  })
 
